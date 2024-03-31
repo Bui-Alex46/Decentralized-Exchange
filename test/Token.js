@@ -8,12 +8,17 @@ const tokens = (n) =>{
 
 describe('Token', () => {
     // Defining scope of token for global use
-    let token;
+    let token, accounts, deployer;
+   
     beforeEach(async () => {
         // Fetch token from blockchain
         const Token = await ethers.getContractFactory('Token')
         // Deploy contract to the test network
         token = await Token.deploy('Altonio', 'ALT', '1000000')
+        // Fetch accounts
+        // Signer = addresses
+        accounts = await ethers.getSigners()
+        deployer = accounts[0]
     })
     
     // Deployment Block for this token 
@@ -36,6 +41,10 @@ describe('Token', () => {
         it('has correct total supply', async () => {
             expect(await token.totalSupply()).to.equal(totalSupply)
         })
+        it('assigns total supply to deployer', async () => {
+            expect(await token.balanceOf(deployer.address)).to.equal(totalSupply)
+        })
+
     })
     
 })

@@ -12,13 +12,17 @@ contract Token{
     // Converting it to Wei
     uint256 public totalSupply;   // 1,000,000 x 10^18;
     
+    // Track balances
+    mapping(address => uint256) public balanceOf;   //datatype -> value
+    // Send Tokens
+
     constructor(string memory _name, 
                 string memory _symbol, 
                 uint256 _totalSupply){
         name = _name;
         symbol = _symbol;
         totalSupply = _totalSupply * (10**decimals);
-
+        balanceOf[msg.sender] = totalSupply; 
     }
 }
 
