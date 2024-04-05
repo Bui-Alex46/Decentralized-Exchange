@@ -17,10 +17,18 @@ contract Token{
     // Track balances
     mapping(address => uint256) public balanceOf;   //datatype -> value
     
+    //owner address => spender address 
+    mapping(address => mapping(address => uint256) ) public allowance;
     // Transfer Event per the ERC20 standard
     event Transfer(
         address indexed from,
         address indexed to,
+        uint256 value
+    );
+
+    event Approval(
+        address indexed owner,
+        address indexed spender,
         uint256 value
     );
 
@@ -50,5 +58,18 @@ contract Token{
         
         return true;  
     }
+
+
+    function approve(address _spender, uint256 _value) 
+    public returns (bool success){
+        // To.be.reverted function must require this
+        require(_spender != address(0));
+        allowance[msg.sender][_spender] = _value;
+        emit Approval(msg.sender, _spender, _value);
+        return true;
+    }
+
+
+
 }
 
