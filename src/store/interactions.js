@@ -41,16 +41,21 @@ export const loadTokens = async(provider ,addresses, dispatch) => {
     //new ethers.Contract(address, abi, network provider)
     token = new ethers.Contract(addresses[0], TOKEN_ABI, provider)
     symbol = await token.symbol()
+    console.log('Token 1 loaded:', token, symbol);
+
     // Triggering the 'action'
     dispatch({type: 'TOKEN_1_LOADED', token, symbol})
 
     token = new ethers.Contract(addresses[1], TOKEN_ABI, provider)
     symbol = await token.symbol()
+    console.log('Token 2 loaded:', token, symbol);
     dispatch({type: 'TOKEN_2_LOADED', token, symbol})
+
 
     return token
 
 }
+
 
 export const loadExchange = async (provider, address, dispatch) => {
     const exchange = new ethers.Contract(address, EXCHANGE_ABI, provider);
