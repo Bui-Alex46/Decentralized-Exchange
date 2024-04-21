@@ -15,7 +15,7 @@ export const provider = (state = {},action) => {
         case 'ACCOUNT_LOADED':
             return{
                 ...state,
-                account: action.acount
+                account: action.account
             }
         case 'ETHER_BALANCE_LOADED':
             return{
