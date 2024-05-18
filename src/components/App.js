@@ -5,6 +5,7 @@ import Navbar from './Navbar'
 import Markets from './Markets'
 import Balance from './Balance'
 import Order from './Order'
+import PriceChart from './PriceChart'
 import OrderBook from './OrderBook'
 import {
   loadProvider, 
@@ -80,6 +81,7 @@ function App() {
         <section className='exchange__section--right grid'>
 
           {/* PriceChart */}
+          <PriceChart />
 
           {/* Transactions */}
 
